@@ -1,0 +1,36 @@
+/*In this project, you’re going to make your own table with some small set of “famous people”, then make more tables about things they do and join those to create nice human readable lists.
+
+For example, here are types of famous people and the questions your data could answer:
+
+Movie stars: What movies are they in? Are they married to each other?
+Singers: What songs did they write? Where are they from?
+Authors: What books did they write?
+Fictional characters: How are they related to other characters? What books do they show up in?*/
+
+CREATE TABLE billionares (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    nationality TEXT);
+    
+INSERT INTO billionares (fullname, age, nationality) VALUES ("Jeff Bezos", 54, "US");
+INSERT INTO billionares (fullname, age, nationality) VALUES ("Bill Gates", 62, "US");
+INSERT INTO billionares (fullname, age, nationality) VALUES ("Warren Buffet", 87, "US");
+INSERT INTO billionares (fullname, age, nationality) VALUES ("Bernard Arnault", 69, "France");
+INSERT INTO billionares (fullname, age, nationality) VALUES ("Mark Zucherberg", 33, "US");
+
+CREATE table secondary (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    billionare_id INTEGER,
+    secondary_education TEXT);
+    
+INSERT INTO secondary (billionare_id, secondary_education) VALUES (1, "Princeton University");
+INSERT INTO secondary (billionare_id, secondary_education) VALUES (2, "Harvard College");
+INSERT INTO secondary (billionare_id, secondary_education) VALUES (3, "Columbia Business School");
+INSERT INTO secondary (billionare_id, secondary_education) VALUES (4, "École Polytechnique");
+INSERT INTO secondary (billionare_id, secondary_education) VALUES (5, "Harvard University");
+
+SELECT billionares.fullname, secondary.secondary_education
+FROM billionares
+JOIN secondary
+ON billionares.id = secondary.billionare_id;
